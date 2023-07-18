@@ -3,5 +3,197 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "withModules": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/with-modules",
+      "sourceRoot": "projects/with-modules/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/with-modules",
+            "index": "projects/with-modules/src/index.html",
+            "main": "projects/with-modules/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/with-modules/tsconfig.app.json",
+            "assets": [
+              "projects/with-modules/src/favicon.ico",
+              "projects/with-modules/src/assets"
+            ],
+            "styles": [
+              "projects/with-modules/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "withModules:build:production"
+            },
+            "development": {
+              "browserTarget": "withModules:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "withModules:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/with-modules/tsconfig.spec.json",
+            "assets": [
+              "projects/with-modules/src/favicon.ico",
+              "projects/with-modules/src/assets"
+            ],
+            "styles": [
+              "projects/with-modules/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "standaloneApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true
+        }
+      },
+      "root": "projects/standalone-app",
+      "sourceRoot": "projects/standalone-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/standalone-app",
+            "index": "projects/standalone-app/src/index.html",
+            "main": "projects/standalone-app/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/standalone-app/tsconfig.app.json",
+            "assets": [
+              "projects/standalone-app/src/favicon.ico",
+              "projects/standalone-app/src/assets"
+            ],
+            "styles": [
+              "projects/standalone-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "standaloneApp:build:production"
+            },
+            "development": {
+              "browserTarget": "standaloneApp:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "standaloneApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/standalone-app/tsconfig.spec.json",
+            "assets": [
+              "projects/standalone-app/src/favicon.ico",
+              "projects/standalone-app/src/assets"
+            ],
+            "styles": [
+              "projects/standalone-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
